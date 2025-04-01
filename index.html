@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qiucheng Zhao</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5282;
+            --link-color: #3182ce;
+            --name-color: #1a365d;
+            --hover-color: #4299e1;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.8;
+            color: #2d3748;
+            margin: 0;
+            padding: 20px 60px;
+            max-width: 1250px;
+            margin: 0 auto;
+            font-size: 22px;
+            background-color: #f0f7ff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: transparent;
+            margin: -20px -60px 20px -60px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 24px;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover {
+            background-color: transparent;
+            color: var(--link-color);
+            border-bottom: 2px solid var(--link-color);
+        }
+
+        .main-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .left-section {
+            flex-shrink: 0;
+            width: 400px;
+        }
+
+        .profile-image {
+            width: 100%;
+        }
+
+        .profile-image img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .content-section {
+            flex: 1;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--name-color);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        a:hover {
+            color: var(--hover-color);
+            background-color: rgba(49, 130, 206, 0.1);
+        }
+
+        .contact-icons {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .contact-icons a {
+            color: var(--primary-color);
+            font-size: 32px;
+            margin: 0 15px;
+            text-decoration: none;
+            padding: 0;
+            background-color: transparent !important;
+        }
+
+        .contact-icons a:hover {
+            color: var(--hover-color);
+        }
+
+        .email {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .awards-section {
+            margin-top: 60px;
+            padding: 0 40px;
+        }
+
+        .awards-section h2 {
+            color: #1a365d;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .awards-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .awards-list li {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .awards-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .teaching-section {
+            margin-top: 60px;
+            padding: 0 40px;
+        }
+
+        .teaching-section h2 {
+            color: #1a365d;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .teaching-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .teaching-list li {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .teaching-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="https://q1ucheng.github.io/blogs/">Blog</a></li>
+                <li><a href="./files/resume.pdf">CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="left-section">
+            <div class="profile-image">
+                <img src="./imgs/testphoto.jpg" alt="Profile Photo">
+            </div>
+            <p class="email">Email: zhaoqiucheng@mail.nwpu.edu.cn</p>
+            <div class="contact-icons">
+                <a href="https://github.com/Q1ucheng" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="./imgs/wechat.png" target="_blank"><i class="fab fa-weixin"></i></a>
+                <a href="https://www.zhihu.com/people/qcqc-40-5" target="_blank"><i class="fab fa-zhihu"></i></a>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <section>
+                <p class="name">Qiucheng Zhao 赵邱诚</p>
+                <p>I am a junior undergraduate student from <a href="https://jidian.nwpu.edu.cn/index.htm">the School of Mechanical Engineering</a>, <a href="https://www.nwpu.edu.cn/">Northwestern Polytechnical University</a>, majoring in Mechatronic Engineering. My hobbies are badminton, marathons, and movies; and I have academic interests in <strong> mathematics, mechanics, and robotics.</strong></p>
+                <p>During my postgraduate study, I hope to engage in research related to the following aspects:
+                    <ul>
+                        <li>Environmental perception and modeling of robots or UAVs</li>
+                        <li>Force control of robots</li>
+                        <li>Motion control of robots</li>
+                    </ul>
+                </p>
+                <p style="color: #dc2626; font-weight: 800;">A journey of a thousand miles begins with a single step ! 😉</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- 添加Awards部分 -->
+    <div class="awards-section">
+        <h2>Awards and Honors</h2>
+        <ul class="awards-list">
+            <li>National Scholarship, 2024.</li>
+            <li>First Prize (Individual Category), 5th International Engineering Mechanics Contest (Asian Region).</li>
+            <li>Second Prize (Shaanxi Division), 15th National Undergraduate Mathematics Competition.</li>
+            <li>Second Prize (Shaanxi Division), National Mathematical Contest in Modeling.</li>
+            <li>First Prize, 12th Mechanics Competition, Northwestern Polytechnical University.</li>
+            <li>First Prize, 25th Mathematical Modeling Competition, Northwestern Polytechnical University.</li>
+        </ul>
+    </div>
+
+    <!-- 添加Teaching Experience部分 -->
+    <div class="teaching-section">
+        <h2>Coursework</h2>
+        <ul class="teaching-list">
+            <p><strong>Automatic Control Principles (100), Theoretical Mechanics (100)</strong>, Electrical & Electronic Engineering (98), University Physics (99), Engineering Drawing (97), Calculus (97/96), Linear Algebra (96), Numerical Methods (96), Advanced College English Reading (94), Probability Theory (93), Mechanical Principles (92)</p>
+        </ul>
+        <h2>Open Courses</h2>
+        <ul class="teaching-list">
+            <li>UCB CS 61A: Structure and Interpretation of Computer Programs.</li>
+            <li>MIT 18.06: Linear Algebra.</li>
+        </ul>    
+    </div>
+
+    <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rcyXRah39kj-PLbVKizpW0aUkwlYbOI3tHtpOLTGudI'></script>
+
+    <hr style="margin: 40px auto; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); width: 80%;">
+
+    <div style="text-align: center; color: #666; font-size: 0.9em; margin-top: 20px; margin-bottom: 20px;">
+        Last updated: Apr. 2025
+    </div>
+</body>
+</html>
