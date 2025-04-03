@@ -200,6 +200,71 @@
             position: absolute;
             left: 0;
         }
+        /* 链接容器样式 */
+        .link-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .paper-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .paper-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background-color: rgba(27, 74, 215, 0.1);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .paper-links a:hover {
+            background-color: rgba(49, 130, 206, 0.2);
+        }
+
+        .paper-links i {
+            font-size: 1.2em;
+        }
+
+        /* 媒体查询，当屏幕宽度小于等于768px时应用以下样式 */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px; /* 减少页面的左右内边距 */
+                font-size: 18px; /* 减小字体大小 */
+            }
+
+            header {
+                flex-direction: column; /* 垂直排列导航栏元素 */
+                padding: 20px;
+                margin: -20px -20px 20px -20px;
+            }
+
+            nav ul li {
+                display: block; /* 让导航链接垂直排列 */
+                margin: 10px 0;
+            }
+
+            .main-container {
+                flex-direction: column; /* 垂直排列主要内容 */
+            }
+
+            .left-section {
+                width: 100%; /* 让左侧部分占满宽度 */
+            }
+
+            .name {
+                font-size: 2.5em; /* 减小名字的字体大小 */
+            }
+
+            .awards-section,
+            .teaching-section {
+                padding: 0 20px; /* 减少奖项和教学部分的左右内边距 */
+            }
+        }
     </style>
 </head>
 <body>
@@ -257,14 +322,21 @@
 
     <!-- 添加Teaching Experience部分 -->
     <div class="teaching-section">
-        <h2>Coursework</h2>
+        <h2>Courses</h2>
         <ul class="teaching-list">
             <p><strong>Automatic Control Principles (100), Theoretical Mechanics (100)</strong>, Electrical & Electronic Engineering (98), University Physics (99), Engineering Drawing (97), Calculus (97/96), Linear Algebra (96), Numerical Methods (96), Advanced College English Reading (94), Probability Theory (93), Mechanical Principles (92)</p>
         </ul>
         <h2>Open Courses</h2>
         <ul class="teaching-list">
-            <li>UCB CS 61A: Structure and Interpretation of Computer Programs.</li>
-            <li>MIT 18.06: Linear Algebra.</li>
+            <li><strong>UCB CS 61A: Structure and Interpretation of Computer Programs.</strong></li>
+                <p style="padding-left: 20px; color: #808080;">CS61A introduces programming and computer science through abstraction techniques, covering procedural, control, data, and language abstraction, while exploring functional, object-oriented, and declarative paradigms with significant projects.</p>
+                <div class="paper-links" style="padding-left: 20px;">
+                    <a href="https://q1ucheng.github.io/blogs/Note/CS61A/1.CS61A_Structure_and_Interpretation_of_Computer_Programs/" target="_blank"><i class="fa-solid fa-pencil"></i> My Note</a>
+                    <a href="https://github.com/Q1ucheng/CS61A-Fall-20" target="_blank"><i class="fa-brands fa-github"></i> Github Repository</a>
+                </div>
+            </li>
+            <p></p>
+            <li><strong>MIT 18.06: Linear Algebra.</strong></li>
         </ul>    
     </div>
 
