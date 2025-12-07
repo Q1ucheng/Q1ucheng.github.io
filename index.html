@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PPTP2SM6JN"></script>
@@ -219,9 +219,54 @@
             width: 400px;
         }
 
+        /* =========================================
+           3D 翻转头像特效 (Card Flip)
+           ========================================= */
+           .profile-image {
+            width: 100%;
+            /* 3D 视距：数值越小，3D 效果越强烈，1000px 是标准值 */
+            perspective: 1000px; 
+            cursor: pointer; /* 提示可交互 */
+        }
+
+        /* 内部翻转容器 */
+        .profile-image-inner {
+            position: relative;
+            width: 100%;
+            /* 翻转动画持续时间：0.8秒 */
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* 关键属性：保留3D空间，否则图片会变扁 */
+            transform-style: preserve-3d;
+        }
+
+        /* 鼠标悬停时：旋转180度 */
+        .profile-image:hover .profile-image-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* 图片通用样式 */
         .profile-image img {
             width: 100%;
             border-radius: 5px;
+            /* 关键属性：隐藏图片的背面，这样旋转时不会看到镜像的图 */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            box-shadow: 0 4px 6px var(--shadow-color); /* 继承你的阴影变量 */
+        }
+
+        /* 正面图片：作为文档流支撑高度 */
+        .img-front {
+            display: block;
+        }
+
+        /* 背面图片：绝对定位覆盖，并预先旋转180度 */
+        .img-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            object-fit: cover; /* 保证图片比例不拉伸 */
+            transform: rotateY(180deg);
         }
 
         .contact-icons {
@@ -439,6 +484,10 @@
             body {
                 padding: 0;
                 font-size: 18px;
+
+                /* --- 新增：允许单词换行并使用连字符 --- */
+                -webkit-hyphens: auto; /* 兼容 Safari/Webkit 内核 */
+                hyphens: auto;         /* 标准属性 */
             }
 
             /* 导航栏适配 */
@@ -548,7 +597,12 @@
         <!-- 左侧：头像与联系方式 -->
         <div class="left-section">
             <div class="profile-image">
-                <img src="./imgs/testphoto.jpg" alt="Profile Photo">
+                <div class="profile-image-inner">
+                    <!-- 正面图片 -->
+                    <img src="./imgs/testphoto01.jpg" alt="Front Profile" class="img-front">
+                    <!-- 背面图片 (翻转后显示) -->
+                    <img src="./imgs/myphoto.jpg" alt="Back Profile" class="img-back">
+                </div>
             </div>
             <div class="contact-icons">
                 <a href="zhaoqiucheng@mail.nwpu.edu.cn" target="_blank"><i class="fas fa-envelope"></i></a>
@@ -563,7 +617,7 @@
             <section>
                 <p class="name">Qiucheng Zhao 赵邱诚</p>
                 <p>I am a senior undergraduate student from <a href="https://jidian.nwpu.edu.cn/index.htm">the School of Mechanical Engineering</a>, <a href="https://www.nwpu.edu.cn/">Northwestern Polytechnical University (NWPU)</a>, majoring in Mechatronic Engineering. In September 2025, I was granted the exemption-based postgraduate recommendation qualification, and I will enroll in the <a href="http://mse.hust.edu.cn/">School of Mechanical Science and Engineering</a>, <a href="https://www.hust.edu.cn/">Huazhong University of Science and Technology (HUST)</a> in September 2026 to pursue a research-based Master's degree in Mechanical Engineering.</p>
-                <p>My research interests include mechatronic control, mechanics, and robotics, and I am deeply fascinated by the interdisciplinary integration of machinery, electronics, and control systems.</p>
+                <p>My research interests include mechatronic control, mechanics, and robotics, and I am deeply fascinated by the interdisciplinary integration of Mechatronics and Computer Science!</p>
                 <p>Beyond my academic pursuits, I enjoy playing badminton and swimming. I am also an enthusiastic beginner in photography, currently using <strong>Lumix G97</strong>. If you share an interest in photography or use <strong>M43 system</strong>, I would be delighted to connect and exchange ideas!</p>
                 <p class="quote-highlight">A journey of a thousand miles begins with a single step ! 😉</p>
             </section>
@@ -595,8 +649,8 @@
             </div>
 
             <ul class="edu-details">
-                <li><strong>Major GPA:</strong> 3.795/4.1 (AVG: 90.1)</li>
-                <li><strong>Relevant Coursework:</strong> Automatic Control Principles, Theoretical Mechanics, Robotics, Theory of Machines and Mechanisms, Mechanical Design.</li>
+                <li><strong>Major GPA:</strong> 3.795 / 4.1 ( 90.1 / 100 )</li>
+                <li><strong>Main Research:</strong> Gesture Recognition System Based on Multimodal Fusion, Dexterous Gripper</li>
             </ul>
         </div>
     </div>
@@ -604,15 +658,23 @@
     <!-- Awards Section -->
     <div class="section-container" id="awards">
         <h2>Awards and Honors</h2>
+        
+        <h3>Scholarships</h3>
         <ul class="styled-list">
-            <li>Huameng Scholarship, 2025.</li>
-            <li>National Scholarship, 2024.</li>
-            <li>First Prize (Individual Category), 5th International Engineering Mechanics Contest (Asian Region).</li>
-            <li>Second Prize (Shaanxi Division), 15th National Undergraduate Mathematics Competition.</li>
-            <li>Second Prize (Shaanxi Division), National Mathematical Contest in Modeling.</li>
+            <li>Huameng Scholarship, 2025</li>
+            <li>First Prize Scholarship, NWPU, 2025</li>
+            <li>National Scholarship, 2024</li>
+            <li>Second Prize Scholarship, NWPU, 2023</li>
+        </ul>
+        
+        <h3>Competition Awards</h3>
+        <ul class="styled-list">
+            <li>First Prize (Individual Category), 5th International Engineering Mechanics Contest (Asian Region)</li>
+            <li>Second Prize (Shaanxi Division), 15th National Undergraduate Mathematics Competition</li>
+            <li>Second Prize (Shaanxi Division), National Mathematical Contest in Modeling</li>
             <li>Honorable Mention, The Mathematical Contest in Modeling (MCM), 2025</li>
-            <li>First Prize, 12th Mechanics Competition, Northwestern Polytechnical University.</li>
-            <li>First Prize, 25th Mathematical Modeling Competition, Northwestern Polytechnical University.</li>
+            <li>First Prize, 12th Mechanics Competition, Northwestern Polytechnical University</li>
+            <li>First Prize, 25th Mathematical Modeling Competition, Northwestern Polytechnical University</li>
         </ul>
     </div>
 
@@ -622,11 +684,10 @@
         <!-- 普通课程列表 -->
         <ul class="styled-list">
             <li>
-                <strong>Automatic Control Principles (100), Theoretical Mechanics (100)</strong>, Electrical & Electronic Engineering (98), University Physics (99), Engineering Drawing (97), Calculus (97/96), Linear Algebra (96), Numerical Methods (96), Advanced College English Reading (94), Probability Theory (93), Mechanical Principles (92)
+                <strong>Automatic Control Principles (100),</strong> Theoretical Mechanics (99), Electrical & Electronic Engineering (98), Engineering Drawing (97), Calculus (97/96), Linear Algebra (96), Probability Theory (93), Mechanical Principles (92), Mechanical Design (90)
             </li>
         </ul>
 
-        <h2>Open Courses</h2>
         <!-- 公开课列表 -->
         <ul class="styled-list">
             <li>
@@ -665,7 +726,7 @@
             html.setAttribute('data-theme', savedTheme);
             updateIcon(savedTheme);
         } else {
-            updateIcon('light'); // 默认浅色
+            updateIcon('dark'); // 默认深色
         }
 
         // 2. 点击事件：切换主题并保存
