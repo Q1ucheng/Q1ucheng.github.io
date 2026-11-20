@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PPTP2SM6JN"></script>
@@ -17,7 +17,7 @@
     
     <!-- 引入字体和图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================
@@ -28,25 +28,25 @@
             scroll-behavior: smooth;
             --transition-speed: 0.3s;
 
-            /* --- Light Theme (默认浅色模式) --- */
-            --bg-color: #f0f7ff;
-            --header-bg: rgba(240, 247, 255, 0.1);
-            --text-color: #2d3748;
-            --text-muted: #666666;
-            --primary-color: #2c5282;
-            --link-color: #3182ce;
-            --name-color: #1a365d;
-            --hover-color: #4299e1;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --card-bg: rgba(27, 74, 215, 0.1);
-            --shadow-color: rgba(0,0,0,0.1);
-            --date-bg: rgba(49, 130, 206, 0.15);
-            --date-text: #2c5282;
+            /* --- Light Theme (默认浅色模式：纯白背景 / 黑色正文 / 蓝色链接) --- */
+            --bg-color: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.6);
+            --text-color: #000000;
+            --text-muted: #4d4d4d;
+            --primary-color: #1d4ed8;
+            --link-color: #2563eb;
+            --name-color: #1e3a8a;
+            --hover-color: #1e40af;
+            --border-color: rgba(0, 0, 0, 0.12);
+            --card-bg: rgba(37, 99, 235, 0.08);
+            --shadow-color: rgba(15, 23, 42, 0.12);
+            --date-bg: rgba(37, 99, 235, 0.10);
+            --date-text: #1d4ed8;
 
             /* --- 液态玻璃拟态 (Glassmorphism) 浅色配置 --- */
-            --glass-bg: rgba(255, 255, 255, 0.01);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass-shadow: 0 2px 18px rgba(15, 23, 42, 0.06);
         }
 
         /* --- Dark Theme (Catppuccin Mocha 深色模式) --- */
@@ -75,7 +75,7 @@
            2. 全局重置与基础样式 (Global Reset)
            ========================================= */
         body {
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Outfit', sans-serif;
             line-height: 1.8;
             margin: 0;
             /* 修改点：去除 max-width 和 padding，改为 100% 宽度 */
@@ -112,7 +112,7 @@
         /* 标题通用样式 */
         h2 {
             color: var(--name-color) !important;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 30px;
             margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
@@ -128,7 +128,7 @@
 
         /* 带圆点的列表项 (用于 Awards, Teaching, Education Details) */
         .styled-list li {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 20px;
             margin-bottom: 15px;
             padding-left: 20px;
@@ -170,22 +170,37 @@
             text-align: center;
         }
 
-        nav ul li {
+        nav li {
             display: inline;
             margin: 0 15px;
         }
 
-        nav ul li a {
-            font-family: 'Lato', sans-serif;
+        nav li a {
+            display: inline-block;
+            font-family: 'Outfit', sans-serif;
             color: var(--primary-color);
             font-size: 20px;
             padding: 5px 10px;
         }
 
-        nav ul li a:hover {
+        nav li a:hover {
             background-color: transparent;
             color: var(--link-color);
             border-bottom: 2px solid var(--link-color);
+        }
+
+        /* “更多”菜单：桌面端平铺显示，移动端收进右侧按钮的下拉面板 */
+        .nav-more {
+            position: relative;
+            margin: 0; /* 间距交给内部 li 控制，避免与相邻项重复 */
+        }
+
+        .nav-more-btn {
+            display: none; /* 桌面端隐藏 */
+        }
+
+        .nav-more-menu {
+            display: inline; /* 桌面端与普通栏目并排 */
         }
 
         /* 主题切换按钮 */
@@ -299,9 +314,20 @@
             line-height: 1.2;
         }
 
+        /* 姓名拆成中英两段：移动端在两者之间换行，且中文不被拆开 */
+        .name-zh {
+            white-space: nowrap;
+        }
+
         .quote-highlight {
             color: #dc2626;
             font-weight: 800;
+        }
+
+        /* 个人简介正文段落：两端对齐 */
+        .bio-p {
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         /* =========================================
@@ -330,14 +356,17 @@
             gap: 15px;
         }
 
+        /* 固定方形占位框：两校校徽占据相同宽高，保证校名左对齐 */
         .edu-logo {
+            width: 80px;
             height: 80px;
-            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
             border-radius: 4px;
         }
 
         .edu-school-name {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 24px;
             font-weight: 700;
             color: var(--name-color);
@@ -351,7 +380,7 @@
         }
 
         .edu-date {
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-weight: 600;
             color: var(--date-text) !important;
             font-size: 20px;
@@ -361,7 +390,7 @@
         }
 
         .edu-degree {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 20px;
             color: var(--text-muted) !important;
             font-style: italic;
@@ -386,7 +415,7 @@
         }
 
         .edu-details li {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 19px;
             margin-bottom: 5px;
             position: relative;
@@ -402,44 +431,11 @@
         }
 
         /* =========================================
-           6. 奖项与课程 (Awards & Courses)
+           6. 奖项 (Awards)
            ========================================= */
         .section-container {
             margin-top: 60px;
             padding: 0 40px;
-        }
-
-        /* 课程描述文本样式 */
-        .course-desc {
-            padding-left: 0; /* 内部无需缩进，由父级 li padding 控制 */
-            color: var(--text-muted); /* 对应原 color: #808080 */
-            margin: 5px 0 10px 0;
-        }
-
-        /* 论文/项目链接按钮组 */
-        .paper-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 5px;
-        }
-
-        .paper-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background-color: var(--card-bg);
-            border-radius: 6px;
-            color: var(--primary-color);
-            transition: all 0.2s ease;
-        }
-
-        .paper-links a:hover {
-            background-color: rgba(49, 130, 206, 0.2);
-        }
-
-        .paper-links i {
-            font-size: 1.2em;
         }
 
         /* =========================================
@@ -500,9 +496,96 @@
             
             header h1 { display: none; } /* 确保布局 */
 
-            nav ul li {
-                display: inline-block;
-                margin: 4px 5px;
+            /* ---- 移动端导航：About / Education 在左，更多菜单与主题切换在右 ---- */
+            header nav {
+                flex: 1;
+            }
+
+            nav ul {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                position: relative; /* 下拉面板相对整条导航定位 */
+            }
+
+            nav li {
+                display: block;
+                margin: 0 3px;
+            }
+
+            nav li a {
+                font-size: 18px;
+                padding: 4px 6px;
+                white-space: nowrap;
+            }
+
+            .nav-more {
+                margin-left: auto; /* 把“更多”按钮与主题切换推到右侧 */
+                position: static;  /* 面板改为相对导航栏右边缘对齐 */
+            }
+
+            .nav-more-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                padding: 0;
+                border: none;
+                border-radius: 8px;
+                background: none;
+                color: var(--primary-color);
+                font-size: 18px;
+                cursor: pointer;
+                transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+            }
+
+            .nav-more-btn:hover,
+            .nav-more-btn[aria-expanded="true"] {
+                color: var(--hover-color);
+                background-color: var(--card-bg);
+            }
+
+            .nav-more-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 20px);
+                right: 0;
+                width: auto; /* 覆盖 nav ul 的 100% 宽度 */
+                min-width: 168px;
+                padding: 6px 0;
+                background-color: var(--bg-color);
+                border: 1px solid var(--border-color);
+                border-radius: 10px;
+                box-shadow: 0 10px 28px var(--shadow-color);
+                text-align: left;
+                z-index: 1002;
+            }
+
+            .nav-more-menu.is-open {
+                display: block;
+            }
+
+            .nav-more-menu li {
+                display: block;
+                margin: 0;
+            }
+
+            .nav-more-menu li a {
+                display: block;
+                padding: 10px 18px;
+                font-size: 17px;
+            }
+
+            .nav-more-menu li a:hover {
+                background-color: var(--date-bg);
+                border-bottom: none;
+            }
+
+            .theme-toggle-btn {
+                margin-left: 8px;
+                padding: 4px;
+                font-size: 22px;
             }
 
             /* 主要内容垂直排列 */
@@ -518,6 +601,11 @@
             .name {
                 font-size: 2.5em;
                 text-align: center;
+            }
+
+            /* 中文名另起一行，避免中英文挤在一行被拆断 */
+            .name .name-zh {
+                display: block;
             }
 
             .content-section {
@@ -536,7 +624,8 @@
             }
 
             .edu-logo {
-                height: 60px; /* 手机端缩小 logo */
+                width: 60px;  /* 手机端缩小 logo，宽高保持一致以对齐校名 */
+                height: 60px;
             }
 
             .edu-date {
@@ -579,10 +668,16 @@
             <ul>
                 <li><a href="#About">About</a></li>
                 <li><a href="#education">Education</a></li>
-                <li><a href="#awards">Awards</a></li>
-                <li><a href="#Courses">Courses</a></li>
-                <li><a href="https://q1ucheng.github.io/blogs/">Blog</a></li>
-                <li><a href="./files/resume.pdf">CV</a></li>
+                <!-- 桌面端平铺显示；移动端收进“更多”下拉菜单 -->
+                <li class="nav-more">
+                    <button class="nav-more-btn" id="nav-more-btn" aria-label="More navigation" aria-haspopup="true" aria-expanded="false" aria-controls="nav-more-menu">
+                        <i class="fas fa-ellipsis"></i>
+                    </button>
+                    <ul class="nav-more-menu" id="nav-more-menu">
+                        <li><a href="#awards">Awards</a></li>
+                        <li><a href="https://q1ucheng.github.io/blogs/">Blog</a></li>
+                    </ul>
+                </li>
                 <li>
                     <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
                         <i class="fas fa-sun"></i>
@@ -599,9 +694,9 @@
             <div class="profile-image">
                 <div class="profile-image-inner">
                     <!-- 正面图片 -->
-                    <img src="./imgs/testphoto01.jpg" alt="Front Profile" class="img-front">
+                    <img src="./imgs/myphoto_new.jpg" alt="Front Profile" class="img-front">
                     <!-- 背面图片 (翻转后显示) -->
-                    <img src="./imgs/myphoto.jpg" alt="Back Profile" class="img-back">
+                    <img src="./imgs/myphoto_new.jpg" alt="Back Profile" class="img-back">
                 </div>
             </div>
             <div class="contact-icons">
@@ -615,10 +710,10 @@
         <!-- 右侧：自我介绍 -->
         <div class="content-section" id="About">
             <section>
-                <p class="name">Qiucheng Zhao 赵邱诚</p>
-                <p>I am a senior undergraduate student from <a href="https://jidian.nwpu.edu.cn/index.htm">the School of Mechanical Engineering</a>, <a href="https://www.nwpu.edu.cn/">Northwestern Polytechnical University (NWPU)</a>, majoring in Mechatronic Engineering. In September 2025, I was granted the exemption-based postgraduate recommendation qualification, and I will enroll in the <a href="http://mse.hust.edu.cn/">School of Mechanical Science and Engineering</a>, <a href="https://www.hust.edu.cn/">Huazhong University of Science and Technology (HUST)</a> in September 2026 to pursue a research-based Master's degree in Mechanical Engineering.</p>
-                <p>My research interests include mechatronic control, mechanics, and robotics, and I am deeply fascinated by the interdisciplinary integration of Mechatronics and Computer Science!</p>
-                <p>Beyond my academic pursuits, I enjoy playing badminton and swimming. I am also an enthusiastic beginner in photography, currently using <strong>Lumix G97</strong>. If you share an interest in photography or use <strong>M43 system</strong>, I would be delighted to connect and exchange ideas!</p>
+                <p class="name"><span class="name-en">Qiucheng Zhao</span> <span class="name-zh">赵邱诚</span></p>
+                <p class="bio-p">I am currently a first-year master's student at the <a href="http://mse.hust.edu.cn/" target="_blank">School of Mechanical Science and Engineering</a>, <a href="https://www.hust.edu.cn/" target="_blank">Huazhong University of Science and Technology (HUST)</a>, where my research focuses on the control of lower-limb hip exoskeleton robots. I am particularly interested in end-to-end hip joint torque estimation algorithms based on surface electromyography (sEMG) signals.</p>
+                <p class="bio-p">Previously, I received my B.E. in Mechatronic Engineering from <a href="https://www.nwpu.edu.cn/" target="_blank">Northwestern Polytechnical University (NWPU)</a>, where I studied human–robot interaction in rehabilitation robotics.</p>
+                <p class="bio-p">Beyond my academic pursuits, I enjoy fitness and coffee. I am also an enthusiastic beginner in photography, currently using <strong>Lumix G97</strong>. If you are interested in photography or use the <strong>M43 system</strong>, I would be delighted to exchange ideas with you!</p>
                 <p class="quote-highlight">A journey of a thousand miles begins with a single step ! 😉</p>
             </section>
         </div>
@@ -631,6 +726,27 @@
         <div class="education-entry">
             <div class="edu-header">
                 <div class="edu-school-info">
+                    <img src="./imgs/hust_logo.png" alt="HUST Logo" class="edu-logo">
+                    <a href="https://www.hust.edu.cn/" target="_blank" class="edu-school-name">
+                        Huazhong University of Science and Technology
+                        <!-- PC端显示的学位信息 -->
+                        <div class="edu-degree pc-ver">
+                            School of Mechanical Science and Engineering, M.S. in Mechanical Engineering
+                        </div>
+                    </a>
+                </div>
+                <div class="edu-date">2026.09 – Present</div>
+            </div>
+            
+            <!-- 移动端显示的学位信息 -->
+            <div class="edu-degree mobile-ver">
+                School of Mechanical Science and Engineering, M.S. in Mechanical Engineering
+            </div>
+        </div>
+
+        <div class="education-entry">
+            <div class="edu-header">
+                <div class="edu-school-info">
                     <img src="./imgs/nwpu_logo.png" alt="NWPU Logo" class="edu-logo">
                     <a href="https://www.nwpu.edu.cn/" target="_blank" class="edu-school-name">
                         Northwestern Polytechnical University
@@ -640,7 +756,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="edu-date">2022.09 – Present</div>
+                <div class="edu-date">2022.09 – 2026.06</div>
             </div>
             
             <!-- 移动端显示的学位信息 -->
@@ -650,7 +766,6 @@
 
             <ul class="edu-details">
                 <li><strong>Major GPA:</strong> 3.795 / 4.1 ( 90.1 / 100 )</li>
-                <li><strong>Main Research:</strong> Gesture Recognition System Based on Multimodal Fusion, Dexterous Gripper</li>
             </ul>
         </div>
     </div>
@@ -661,6 +776,7 @@
         
         <h3>Scholarships</h3>
         <ul class="styled-list">
+            <li>First-Class Graduate Academic Scholarship, HUST, 2026</li>
             <li>Huameng Scholarship, 2025</li>
             <li>First Prize Scholarship, NWPU, 2025</li>
             <li>National Scholarship, 2024</li>
@@ -678,39 +794,10 @@
         </ul>
     </div>
 
-    <!-- Courses Section -->
-    <div class="section-container" id="Courses">
-        <h2>Courses</h2>
-        <!-- 普通课程列表 -->
-        <ul class="styled-list">
-            <li>
-                <strong>Automatic Control Principles (100),</strong> Theoretical Mechanics (99), Electrical & Electronic Engineering (98), Engineering Drawing (97), Calculus (97/96), Linear Algebra (96), Probability Theory (93), Mechanical Principles (92), Mechanical Design (90)
-            </li>
-        </ul>
-
-        <!-- 公开课列表 -->
-        <ul class="styled-list">
-            <li>
-                <strong>UCB CS 61A: Structure and Interpretation of Computer Programs.</strong>
-                <div class="course-desc">
-                    CS61A introduces programming and computer science through abstraction techniques, covering procedural, control, data, and language abstraction, while exploring functional, object-oriented, and declarative paradigms with significant projects.
-                </div>
-                <div class="paper-links">
-                    <a href="https://q1ucheng.github.io/blogs/Note/CS61A/1.CS61A_Structure_and_Interpretation_of_Computer_Programs/" target="_blank"><i class="fa-solid fa-pencil"></i> My Note</a>
-                    <a href="https://github.com/Q1ucheng/CS61A-Fall-20" target="_blank"><i class="fa-brands fa-github"></i> Github Repository</a>
-                </div>
-            </li>
-            
-            <li>
-                <strong>MIT 18.06: Linear Algebra.</strong>
-            </li>
-        </ul>    
-    </div>
-
     <!-- Footer -->
     <hr class="section-divider">
     <div class="page-footer">
-        Last updated: Apr. 2025
+        Last updated: Nov. 2026
     </div>
 
     <!-- Scripts -->
@@ -719,14 +806,15 @@
         const icon = toggleBtn.querySelector('i');
         const html = document.documentElement;
 
-        // 1. 初始化：检查本地存储的用户偏好
-        const savedTheme = localStorage.getItem('theme');
+        // 1. 初始化：检查本地存储的用户偏好，无记录时默认白天模式
+        const savedTheme = localStorage.getItem('theme-pref');
         
         if (savedTheme) {
             html.setAttribute('data-theme', savedTheme);
             updateIcon(savedTheme);
         } else {
-            updateIcon('dark'); // 默认深色
+            html.setAttribute('data-theme', 'light');
+            updateIcon('light'); // 默认白天
         }
 
         // 2. 点击事件：切换主题并保存
@@ -735,7 +823,7 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
             html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            localStorage.setItem('theme-pref', newTheme);
             updateIcon(newTheme);
         });
 
@@ -751,6 +839,37 @@
                 toggleBtn.style.color = '#ed8936'; // Orange color
             }
         }
+
+        // 4. 移动端“更多”菜单
+        const moreBtn = document.getElementById('nav-more-btn');
+        const moreMenu = document.getElementById('nav-more-menu');
+
+        function closeMoreMenu() {
+            moreMenu.classList.remove('is-open');
+            moreBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        moreBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = moreMenu.classList.toggle('is-open');
+            moreBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // 点击菜单内的链接后自动收起
+        moreMenu.addEventListener('click', (e) => {
+            if (e.target.closest('a')) closeMoreMenu();
+        });
+
+        // 点击空白处或按 Esc 收起
+        document.addEventListener('click', (e) => {
+            if (!moreMenu.contains(e.target) && !moreBtn.contains(e.target)) {
+                closeMoreMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMoreMenu();
+        });
     </script>
 </body>
 </html>
