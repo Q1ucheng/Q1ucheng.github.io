@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://q1ucheng.github.io/sitemap.xml
